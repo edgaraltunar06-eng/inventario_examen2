@@ -1,0 +1,1 @@
+[2026-03-11T00:49:57.373457] Alta producto: {'id': 2, 'nombre': 'laptop', 'precio': 50000.0, 'stock': 20}

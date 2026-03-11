@@ -1,0 +1,34 @@
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq_examen2
+    ports:
+      - "5672:5672"   # Puerto para la comunicación de mensajes (AMQP)
+      - "15672:15672" # Puerto para la interfaz gráfica de administración
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: secretpassword
+    networks:
+      - microservicios_net
+
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_inventario
+    ports:
+      - "5434:5432"   # Puerto para conectar pgAdmin 4 o tu código Python
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: inventario_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - microservicios_net
+
+networks:
+  microservicios_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
